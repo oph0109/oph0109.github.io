@@ -10,13 +10,13 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --pink: #ff6b9d;
-      --pink-light: #ffa4c4;
-      --pink-dark: #e84a7f;
-      --purple: #9b59b6;
+      --pink: #ff8a65;
+      --pink-light: #ffccbc;
+      --pink-dark: #e64a19;
+      --purple: #5c6bc0;
       --yellow: #ffd93d;
-      --mint: #6dd5c3;
-      --coral: #ff7675;
+      --mint: #4dd0e1;
+      --coral: #ff7043;
       --white: #ffffff;
       --dark: #2d3436;
     }
@@ -27,7 +27,7 @@
       font-family: 'Quicksand', sans-serif;
       color: var(--dark);
       line-height: 1.6;
-      background: linear-gradient(135deg, #fff5f8 0%, #f0e6ff 50%, #e6f7ff 100%);
+      background: linear-gradient(135deg, #fff8f0 0%, #f0f4ff 50%, #e8f5f5 100%);
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -558,7 +558,7 @@
 
   // Floating hearts
   const heartsContainer = document.getElementById('hearts');
-  const heartEmojis = ['💕', '💗', '💖', '💝', '❤️', '💓', '💞'];
+  const heartEmojis = ['❤️', '🧡', '💛', '✨', '⭐', '💫'];
   for (let i = 0; i < 15; i++) {
     const heart = document.createElement('div');
     heart.className = 'heart';
@@ -573,7 +573,7 @@
   function startExperience() {
     document.getElementById('intro').style.display = 'none';
     document.getElementById('experience').classList.add('active');
-    triggerEmojiRain(['💕', '💖', '🎉', '✨']);
+    triggerEmojiRain(['🎉', '✨', '⭐', '🔥']);
     initPhotoStack();
     setTimeout(() => {
       document.getElementById('meterFill').style.width = '69%';
@@ -630,7 +630,7 @@
     houndClicks++;
     if (houndClicks >= 1) {
       houndCard.classList.add('revealed');
-      houndHint.textContent = '✨ majestic hound energy ✨';
+      houndHint.textContent = 'hound.';
     }
   });
 
@@ -707,7 +707,7 @@
     meterLabel.textContent = loveLevelMessages[loveLevel] || loveLevel + '%';
 
     if (loveLevel >= 100) {
-      triggerEmojiRain(['💕', '💖', '💗', '💝', '❤️']);
+      triggerEmojiRain(['❤️', '🔥', '✨', '⭐', '🎉']);
     }
 
     if (loveLevel >= 130) {

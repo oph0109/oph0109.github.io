@@ -35,10 +35,8 @@
     /* Floating Hearts Background */
     .hearts-bg {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       pointer-events: none;
       z-index: 0;
       overflow: hidden;
@@ -58,14 +56,13 @@
       100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
     }
 
-    /* Content Container */
     .content {
       position: relative;
       z-index: 1;
     }
 
-    /* Hero Section */
-    .hero {
+    /* INTRO SCREEN */
+    .intro-screen {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -73,12 +70,11 @@
       justify-content: center;
       text-align: center;
       padding: 2rem;
-      position: relative;
     }
 
-    .hero-title {
+    .intro-title {
       font-family: 'Pacifico', cursive;
-      font-size: clamp(3rem, 10vw, 6rem);
+      font-size: clamp(2.5rem, 8vw, 5rem);
       background: linear-gradient(135deg, var(--pink), var(--purple));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -87,32 +83,29 @@
       animation: bounce-in 1s ease-out;
     }
 
-    .hero-subtitle {
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
+    .intro-subtitle {
+      font-size: 1.3rem;
       color: var(--pink-dark);
-      font-weight: 600;
       margin-bottom: 2rem;
-      animation: fade-in 1s ease-out 0.3s both;
     }
 
-    .hero-date {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: white;
-      padding: 0.8rem 1.5rem;
+    .start-btn {
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      color: white;
+      border: none;
+      padding: 1rem 3rem;
+      font-size: 1.2rem;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
       border-radius: 50px;
-      box-shadow: 0 10px 40px rgba(255, 107, 157, 0.2);
-      font-weight: 600;
-      color: var(--pink-dark);
-      animation: fade-in 1s ease-out 0.5s both;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
     }
 
-    .scroll-hint {
-      position: absolute;
-      bottom: 2rem;
-      animation: bounce 2s infinite;
-      font-size: 2rem;
+    .start-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(255, 107, 157, 0.5);
     }
 
     @keyframes bounce-in {
@@ -121,208 +114,323 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
+    /* MAIN EXPERIENCE */
+    .experience {
+      display: none;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .experience.active {
+      display: block;
+      animation: fade-in 0.5s ease;
+    }
+
     @keyframes fade-in {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    /* Timeline Section */
-    .timeline-section {
-      padding: 4rem 2rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      font-family: 'Pacifico', cursive;
-      font-size: clamp(2rem, 5vw, 3rem);
-      text-align: center;
-      color: var(--pink-dark);
-      margin-bottom: 3rem;
-    }
-
-    .timeline {
-      position: relative;
-      padding-left: 30px;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: linear-gradient(to bottom, var(--pink), var(--purple), var(--mint));
-      border-radius: 2px;
-    }
-
-    .timeline-item {
-      position: relative;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
+    /* CARDS */
+    .card {
       background: white;
-      border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-      transform: translateX(0);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 24px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      text-align: center;
     }
 
-    .timeline-item:hover {
-      transform: translateX(10px);
-      box-shadow: 0 15px 50px rgba(255, 107, 157, 0.15);
+    .card-title {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.8rem;
+      color: var(--pink-dark);
+      margin-bottom: 1rem;
     }
 
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -38px;
-      top: 2rem;
-      width: 20px;
-      height: 20px;
-      background: var(--pink);
-      border-radius: 50%;
-      border: 4px solid white;
-      box-shadow: 0 0 0 4px var(--pink-light);
-    }
-
-    .timeline-item:nth-child(2)::before { background: var(--purple); box-shadow: 0 0 0 4px #d4a5e8; }
-    .timeline-item:nth-child(3)::before { background: var(--mint); box-shadow: 0 0 0 4px #a8e8db; }
-    .timeline-item:nth-child(4)::before { background: var(--coral); box-shadow: 0 0 0 4px #ffb3b3; }
-    .timeline-item:nth-child(5)::before { background: var(--yellow); box-shadow: 0 0 0 4px #ffe588; }
-
-    .timeline-emoji {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .timeline-date {
-      font-size: 0.85rem;
-      color: var(--pink);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.3rem;
-    }
-
-    .timeline-title {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--dark);
-    }
-
-    .timeline-desc {
-      color: #636e72;
-      font-size: 0.95rem;
-    }
-
-    /* Photo Gallery */
-    .gallery-section {
-      padding: 4rem 2rem;
-      background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-    }
-
-    .gallery-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .gallery-item {
+    /* THANKS BUTTON */
+    .thanks-zone {
+      padding: 2rem;
+      min-height: 200px;
       position: relative;
-      border-radius: 20px;
       overflow: hidden;
-      aspect-ratio: 1;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .thanks-btn {
+      background: var(--yellow);
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      border-radius: 16px;
       cursor: pointer;
+      transition: transform 0.1s;
+      position: relative;
+      z-index: 2;
     }
 
-    .gallery-item:hover {
-      transform: scale(1.03) rotate(1deg);
-      box-shadow: 0 20px 60px rgba(255, 107, 157, 0.25);
+    .thanks-btn:active {
+      transform: scale(0.95);
     }
 
-    .gallery-item:nth-child(even):hover {
-      transform: scale(1.03) rotate(-1deg);
+    .flying-thanks {
+      position: absolute;
+      font-weight: 700;
+      color: var(--pink);
+      pointer-events: none;
+      animation: fly-up 1.5s ease-out forwards;
+      font-size: 1rem;
     }
 
-    .gallery-item img {
+    @keyframes fly-up {
+      0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+      100% { opacity: 0; transform: translateY(-200px) rotate(20deg); }
+    }
+
+    .thanks-counter {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #999;
+    }
+
+    /* HOUND SECTION */
+    .hound-card {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .hound-reveal {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin: 1rem auto;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      transition: transform 0.3s;
+    }
+
+    .hound-card:hover .hound-reveal {
+      transform: scale(1.05);
+    }
+
+    .hound-reveal img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.4s ease;
+      filter: blur(15px) grayscale(100%);
+      transition: filter 0.5s;
     }
 
-    .gallery-item:hover img {
-      transform: scale(1.1);
+    .hound-card.revealed .hound-reveal img {
+      filter: none;
     }
 
-    .gallery-item .caption {
+    .hound-label {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 1.5rem 1rem 1rem;
-      background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      background: var(--coral);
       color: white;
-      font-weight: 600;
-      transform: translateY(100%);
-      transition: transform 0.3s ease;
+      padding: 0.5rem 1.5rem;
+      border-radius: 20px;
+      font-weight: 700;
+      transition: transform 0.3s, bottom 0.3s;
     }
 
-    .gallery-item:hover .caption {
-      transform: translateY(0);
+    .hound-card.revealed .hound-label {
+      transform: translateX(-50%) scale(1);
+      bottom: 10px;
     }
 
-    /* Love Note */
-    .love-note {
-      max-width: 700px;
-      margin: 4rem auto;
-      padding: 3rem;
-      background: white;
-      border-radius: 30px;
-      box-shadow: 0 20px 60px rgba(255, 107, 157, 0.15);
-      text-align: center;
+    .hound-hint {
+      font-size: 0.9rem;
+      color: #999;
+      margin-top: 1rem;
+      transition: opacity 0.3s;
+    }
+
+    .hound-card.revealed .hound-hint {
+      color: var(--pink);
+    }
+
+    /* PHOTO STACK */
+    .photo-stack {
       position: relative;
+      width: 280px;
+      height: 350px;
+      margin: 2rem auto;
+      perspective: 1000px;
     }
 
-    .love-note::before {
-      content: '"';
-      font-family: 'Pacifico', cursive;
-      font-size: 8rem;
-      color: var(--pink-light);
+    .polaroid {
       position: absolute;
-      top: -20px;
-      left: 20px;
-      line-height: 1;
-      opacity: 0.5;
+      width: 100%;
+      background: white;
+      padding: 15px 15px 50px;
+      border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      cursor: grab;
+      transition: transform 0.4s ease, box-shadow 0.3s;
+      transform-origin: center bottom;
     }
 
-    .love-note p {
-      font-size: 1.2rem;
-      line-height: 1.8;
+    .polaroid:active { cursor: grabbing; }
+
+    .polaroid img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+
+    .polaroid-caption {
+      text-align: center;
+      margin-top: 12px;
+      font-weight: 600;
       color: var(--dark);
-      position: relative;
-      z-index: 1;
+      font-size: 0.95rem;
     }
 
-    .love-note .signature {
-      margin-top: 2rem;
+    .polaroid:hover {
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+
+    .swipe-hint {
+      text-align: center;
+      color: #999;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    /* LOVE METER */
+    .love-meter {
+      margin: 2rem auto;
+      max-width: 300px;
+    }
+
+    .meter-bar {
+      height: 30px;
+      background: #eee;
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .meter-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--pink), var(--coral), var(--yellow));
+      border-radius: 15px;
+      transition: width 0.5s ease-out;
+    }
+
+    .meter-label {
+      text-align: center;
+      margin-top: 0.5rem;
+      font-weight: 700;
+      color: var(--pink-dark);
+      font-size: 1.1rem;
+    }
+
+    .boost-btn {
+      display: block;
+      margin: 1rem auto;
+      background: linear-gradient(135deg, var(--pink), var(--coral));
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .boost-btn:hover { transform: scale(1.05); }
+    .boost-btn:active { transform: scale(0.98); }
+
+    /* SECRET MESSAGE */
+    .secret-box {
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      border-radius: 20px;
+      padding: 2rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scratch-area {
+      position: relative;
+      height: 120px;
+      background: white;
+      border-radius: 12px;
+      margin-top: 1rem;
+      cursor: crosshair;
+      overflow: hidden;
+    }
+
+    .scratch-canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border-radius: 12px;
+    }
+
+    .hidden-message {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
       font-family: 'Pacifico', cursive;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
+      color: var(--pink-dark);
+      text-align: center;
+      width: 90%;
+    }
+
+    /* FINAL MESSAGE */
+    .final-card {
+      background: linear-gradient(135deg, var(--pink-light), #fff);
+      border: 3px solid var(--pink);
+    }
+
+    .final-message {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .signature {
+      font-family: 'Pacifico', cursive;
+      font-size: 2rem;
       color: var(--pink-dark);
     }
 
-    /* Footer */
+    /* EMOJI RAIN */
+    .emoji-rain {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    .rain-emoji {
+      position: absolute;
+      font-size: 2rem;
+      animation: rain-fall 3s linear forwards;
+    }
+
+    @keyframes rain-fall {
+      0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* FOOTER */
     footer {
       text-align: center;
       padding: 3rem 2rem;
@@ -330,7 +438,7 @@
       font-weight: 600;
     }
 
-    footer .heart-icon {
+    .heart-icon {
       display: inline-block;
       animation: pulse 1s infinite;
     }
@@ -340,173 +448,128 @@
       50% { transform: scale(1.2); }
     }
 
-    /* Confetti on Load */
-    .confetti {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1000;
-    }
-
-    .confetti-piece {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: var(--pink);
-      animation: confetti-fall 4s ease-out forwards;
-    }
-
-    @keyframes confetti-fall {
-      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-    }
-
     /* Responsive */
-    @media (max-width: 600px) {
-      .timeline { padding-left: 25px; }
-      .timeline-item::before { left: -32px; width: 16px; height: 16px; }
-      .love-note { margin: 2rem 1rem; padding: 2rem 1.5rem; }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    @media (max-width: 500px) {
+      .photo-stack { width: 260px; height: 320px; }
+      .polaroid { padding: 12px 12px 45px; }
+      .polaroid img { height: 190px; }
+      .card { padding: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
 <div class="hearts-bg" id="hearts"></div>
-<div class="confetti" id="confetti"></div>
+<div class="emoji-rain" id="emojiRain"></div>
 
 <div class="content">
-  <!-- Hero -->
-  <section class="hero">
-    <h1 class="hero-title">Owen & Alyssa</h1>
-    <p class="hero-subtitle">Our story so far...</p>
-    <div class="hero-date">
-      <span>Together since July 9, 2025</span>
-    </div>
-    <div class="scroll-hint">👇</div>
+
+  <!-- INTRO -->
+  <section class="intro-screen" id="intro">
+    <h1 class="intro-title">Hey Alyssa!</h1>
+    <p class="intro-subtitle">I made something for you...</p>
+    <button class="start-btn" onclick="startExperience()">Open Your Gift 💝</button>
   </section>
 
-  <!-- Timeline -->
-  <section class="timeline-section">
-    <h2 class="section-title">Our Journey</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-emoji">🍣</div>
-        <div class="timeline-date">First Date</div>
-        <div class="timeline-title">Sushi at Umai, Chicago</div>
-        <div class="timeline-desc">Where it all began! Our first date over delicious sushi. Little did we know this would be the start of something amazing.</div>
+  <!-- MAIN EXPERIENCE -->
+  <div class="experience" id="experience">
+
+    <!-- THANKS SPAM -->
+    <div class="card">
+      <h2 class="card-title">First things first...</h2>
+      <p>Thank you for being the best girlfriend ever.</p>
+      <div class="thanks-zone" id="thanksZone">
+        <button class="thanks-btn" id="thanksBtn">thanks thanks thanks</button>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-emoji">💕</div>
-        <div class="timeline-date">July 9, 2025</div>
-        <div class="timeline-title">We Made It Official!</div>
-        <div class="timeline-desc">The day we decided to make it real. Best decision ever.</div>
+      <p class="thanks-counter" id="thanksCounter">spam it, you know you want to</p>
+    </div>
+
+    <!-- HOUND REVEAL -->
+    <div class="card hound-card" id="houndCard">
+      <h2 class="card-title">A Rare Creature Spotted</h2>
+      <p>Click to reveal the legendary beast...</p>
+      <div class="hound-reveal">
+        <img src="photos/IMG_4178.jpg" alt="The Hound">
+        <div class="hound-label">THE HOUND 🐕</div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-emoji">🌉</div>
-        <div class="timeline-date">San Francisco Trip</div>
-        <div class="timeline-title">Adventures in the Bay</div>
-        <div class="timeline-desc">Fisherman's Wharf, Alcatraz, Ghirardelli chocolate, and Boudin sourdough. So many memories exploring the city together!</div>
+      <p class="hound-hint" id="houndHint">tap to reveal true form</p>
+    </div>
+
+    <!-- PHOTO STACK -->
+    <div class="card">
+      <h2 class="card-title">Our Adventures</h2>
+      <p>Click to flip through our memories!</p>
+      <div class="photo-stack" id="photoStack"></div>
+      <p class="swipe-hint">tap the top photo!</p>
+    </div>
+
+    <!-- LOVE METER -->
+    <div class="card">
+      <h2 class="card-title">Love-O-Meter</h2>
+      <p>Current love levels:</p>
+      <div class="love-meter">
+        <div class="meter-bar">
+          <div class="meter-fill" id="meterFill"></div>
+        </div>
+        <div class="meter-label" id="meterLabel">0%</div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-emoji">🤠</div>
-        <div class="timeline-date">Austin, Texas</div>
-        <div class="timeline-title">Texas Adventures</div>
-        <div class="timeline-desc">Taking on Austin together - more adventures, more memories, more us.</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-emoji">❤️</div>
-        <div class="timeline-date">February 14, 2026</div>
-        <div class="timeline-title">Happy Valentine's Day!</div>
-        <div class="timeline-desc">Here's to many more adventures together. I love you, Alyssa!</div>
+      <button class="boost-btn" id="boostBtn">Add More Love 💕</button>
+    </div>
+
+    <!-- SCRATCH CARD -->
+    <div class="card secret-box">
+      <h2 style="font-family: 'Pacifico', cursive; font-size: 1.5rem;">Secret Message</h2>
+      <p>Scratch to reveal...</p>
+      <div class="scratch-area">
+        <div class="hidden-message">I love you more than Boudin sourdough 🥖💕</div>
+        <canvas class="scratch-canvas" id="scratchCanvas"></canvas>
       </div>
     </div>
-  </section>
 
-  <!-- Photo Gallery -->
-  <section class="gallery-section">
-    <h2 class="section-title">Our Memories</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="photos/IMG_4152.jpg" alt="Us together">
-        <div class="caption">Date night vibes ✨</div>
-      </div>
-      <div class="gallery-item">
-        <img src="photos/IMG_4220.jpg" alt="Restaurant date">
-        <div class="caption">Good food, better company 🍽️</div>
-      </div>
-      <div class="gallery-item">
-        <img src="photos/IMG_4207.jpg" alt="Chicago">
-        <div class="caption">Chicago days 🌸</div>
-      </div>
-      <div class="gallery-item">
-        <img src="photos/IMG_4280.jpg" alt="San Francisco">
-        <div class="caption">SF Views 🌉</div>
-      </div>
-      <div class="gallery-item">
-        <img src="photos/IMG_4328.jpg" alt="Alcatraz Ferry">
-        <div class="caption">Alcatraz adventure 🚢</div>
-      </div>
-      <div class="gallery-item">
-        <img src="photos/IMG_4262.jpg" alt="Pier 39">
-        <div class="caption">Pier 39 🦭</div>
-      </div>
-      <div class="gallery-item">
-        <img src="photos/IMG_4352.jpg" alt="Boudin Bakery">
-        <div class="caption">Sourdough life 🥖</div>
-      </div>
-      <div class="gallery-item">
-        <img src="photos/IMG_4356.jpg" alt="Ghirardelli">
-        <div class="caption">Ghirardelli Square 🍫</div>
-      </div>
-      <div class="gallery-item">
-        <img src="photos/IMG_4248.jpg" alt="Travel">
-        <div class="caption">Adventure awaits ✈️</div>
-      </div>
-      <div class="gallery-item">
-        <img src="photos/IMG_4222.jpg" alt="Being silly">
-        <div class="caption">Never a dull moment 😂</div>
-      </div>
-      <div class="gallery-item">
-        <img src="photos/IMG_4178.jpg" alt="Cute moment">
-        <div class="caption">My favorite person 💗</div>
-      </div>
-      <div class="gallery-item">
-        <img src="photos/IMG_4272.jpg" alt="Ferris wheel">
-        <div class="caption">On top of the world 🎡</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Love Note -->
-  <section style="padding: 2rem;">
-    <div class="love-note">
-      <p>
-        Alyssa, every moment with you is an adventure. From our first sushi date to exploring new cities together, you make everything better. Your smile lights up my world, and your laugh is my favorite sound. Here's to us, to more trips, more inside jokes, and more love.
+    <!-- FINAL -->
+    <div class="card final-card">
+      <h2 class="card-title">Happy Valentine's Day!</h2>
+      <p class="final-message">
+        Every moment with you is an adventure - from sushi dates to exploring SF to just being silly at home with Miffy (the hound).
         <br><br>
-        Happy Valentine's Day! 💕
+        You make everything better.
+        <br><br>
+        thanks thanks thanks thanks for being you 💕
       </p>
-      <div class="signature">- Owen</div>
+      <div class="signature">Love, Owen</div>
+      <button class="boost-btn" style="margin-top: 2rem;" onclick="partyMode()">🎉 Party Mode 🎉</button>
     </div>
-  </section>
 
-  <!-- Footer -->
-  <footer>
-    Made with <span class="heart-icon">❤️</span> for Alyssa
-    <br>
-    <small>Happy Valentine's Day 2026</small>
-  </footer>
+    <footer>
+      Made with <span class="heart-icon">❤️</span> for my favorite person
+      <br>
+      <small>Happy Valentine's Day 2026</small>
+    </footer>
+  </div>
+
 </div>
 
 <script>
-  // Create floating hearts
+  // Photo data
+  const photos = [
+    { src: 'photos/IMG_4152.jpg', caption: 'Us being us 💕' },
+    { src: 'photos/IMG_4220.jpg', caption: 'Date night!' },
+    { src: 'photos/IMG_4280.jpg', caption: 'SF adventures 🌉' },
+    { src: 'photos/IMG_4328.jpg', caption: 'Alcatraz ferry!' },
+    { src: 'photos/IMG_4356.jpg', caption: 'Ghirardelli 🍫' },
+    { src: 'photos/IMG_4352.jpg', caption: 'Sourdough life 🥖' },
+    { src: 'photos/IMG_4262.jpg', caption: 'Pier 39!' },
+    { src: 'photos/IMG_4222.jpg', caption: 'Being silly 😂' },
+    { src: 'photos/IMG_4207.jpg', caption: 'Chicago summer 🌸' },
+    { src: 'photos/IMG_4248.jpg', caption: 'Adventure time ✈️' },
+    { src: 'photos/IMG_4272.jpg', caption: 'On top of the world 🎡' },
+    { src: 'photos/IMG_4337.jpg', caption: 'More adventures!' },
+  ];
+
+  // Floating hearts
   const heartsContainer = document.getElementById('hearts');
   const heartEmojis = ['💕', '💗', '💖', '💝', '❤️', '💓', '💞'];
-
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 15; i++) {
     const heart = document.createElement('div');
     heart.className = 'heart';
     heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
@@ -516,24 +579,253 @@
     heartsContainer.appendChild(heart);
   }
 
-  // Confetti burst on load
-  const confettiContainer = document.getElementById('confetti');
-  const colors = ['#ff6b9d', '#9b59b6', '#ffd93d', '#6dd5c3', '#ff7675'];
-
-  for (let i = 0; i < 50; i++) {
-    const piece = document.createElement('div');
-    piece.className = 'confetti-piece';
-    piece.style.left = Math.random() * 100 + '%';
-    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-    piece.style.animationDelay = Math.random() * 0.5 + 's';
-    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-    confettiContainer.appendChild(piece);
+  // Start experience
+  function startExperience() {
+    document.getElementById('intro').style.display = 'none';
+    document.getElementById('experience').classList.add('active');
+    triggerEmojiRain(['💕', '💖', '🎉', '✨']);
+    initPhotoStack();
+    initScratchCard();
+    setTimeout(() => {
+      document.getElementById('meterFill').style.width = '69%';
+      document.getElementById('meterLabel').textContent = '69% (nice)';
+    }, 800);
   }
 
-  // Remove confetti after animation
-  setTimeout(() => {
-    confettiContainer.innerHTML = '';
-  }, 5000);
+  // Thanks button spam
+  const thanksBtn = document.getElementById('thanksBtn');
+  const thanksZone = document.getElementById('thanksZone');
+  const thanksCounter = document.getElementById('thanksCounter');
+  let thanksCount = 0;
+
+  thanksBtn.addEventListener('click', (e) => {
+    thanksCount++;
+
+    // Create flying thanks
+    const numThanks = Math.min(3 + Math.floor(thanksCount / 10), 8);
+    for (let i = 0; i < numThanks; i++) {
+      const thanks = document.createElement('div');
+      thanks.className = 'flying-thanks';
+      thanks.textContent = 'thanks';
+      thanks.style.left = (e.target.offsetLeft + e.target.offsetWidth/2 + Math.random() * 100 - 50) + 'px';
+      thanks.style.top = (e.target.offsetTop + Math.random() * 40 - 20) + 'px';
+      thanks.style.transform = `rotate(${Math.random() * 40 - 20}deg)`;
+      thanks.style.fontSize = (0.8 + Math.random() * 0.5) + 'rem';
+      thanksZone.appendChild(thanks);
+      setTimeout(() => thanks.remove(), 1500);
+    }
+
+    // Update button and counter
+    if (thanksCount >= 100) {
+      thanksBtn.textContent = 'THANKS THANKS THANKS THANKS THANKS!!!';
+      thanksBtn.style.background = 'linear-gradient(135deg, var(--pink), var(--purple))';
+      thanksBtn.style.color = 'white';
+      thanksCounter.textContent = `${thanksCount} thanks! you're committed 💕`;
+    } else if (thanksCount >= 50) {
+      thanksBtn.textContent = 'THANKS THANKS THANKS THANKS!!!';
+      thanksCounter.textContent = `${thanksCount} thanks and counting...`;
+    } else if (thanksCount >= 20) {
+      thanksBtn.textContent = 'thanks thanks thanks thanks thanks';
+      thanksCounter.textContent = `${thanksCount} thanks! keep going!`;
+    } else if (thanksCount >= 5) {
+      thanksCounter.textContent = `${thanksCount} thanks so far...`;
+    }
+  });
+
+  // Hound reveal
+  const houndCard = document.getElementById('houndCard');
+  const houndHint = document.getElementById('houndHint');
+  let houndClicks = 0;
+
+  houndCard.addEventListener('click', () => {
+    houndClicks++;
+    if (houndClicks >= 1) {
+      houndCard.classList.add('revealed');
+      houndHint.textContent = '✨ majestic hound energy ✨';
+    }
+  });
+
+  // Photo stack
+  function initPhotoStack() {
+    const stack = document.getElementById('photoStack');
+    let currentIndex = 0;
+
+    function renderStack() {
+      stack.innerHTML = '';
+
+      // Show 3 cards
+      for (let i = 2; i >= 0; i--) {
+        const photoIndex = (currentIndex + i) % photos.length;
+        const photo = photos[photoIndex];
+
+        const polaroid = document.createElement('div');
+        polaroid.className = 'polaroid';
+        polaroid.style.transform = `rotate(${(i - 1) * 6}deg) translateY(${i * 8}px)`;
+        polaroid.style.zIndex = 3 - i;
+
+        if (i === 0) {
+          polaroid.style.transform = 'rotate(0deg) scale(1.02)';
+          polaroid.style.zIndex = 10;
+        }
+
+        polaroid.innerHTML = `
+          <img src="${photo.src}" alt="${photo.caption}">
+          <div class="polaroid-caption">${photo.caption}</div>
+        `;
+
+        if (i === 0) {
+          polaroid.addEventListener('click', () => {
+            polaroid.style.transition = 'transform 0.4s ease, opacity 0.4s';
+            polaroid.style.transform = 'translateX(350px) rotate(25deg)';
+            polaroid.style.opacity = '0';
+            setTimeout(() => {
+              currentIndex = (currentIndex + 1) % photos.length;
+              renderStack();
+            }, 300);
+          });
+        }
+
+        stack.appendChild(polaroid);
+      }
+    }
+
+    renderStack();
+  }
+
+  // Love meter
+  let loveLevel = 69;
+  const boostBtn = document.getElementById('boostBtn');
+  const meterFill = document.getElementById('meterFill');
+  const meterLabel = document.getElementById('meterLabel');
+
+  const loveLevelMessages = {
+    69: '69% (nice)',
+    79: '79%',
+    89: '89%',
+    99: '99%',
+    100: '100%!! 💕',
+    110: '110%! 💕💕',
+    120: '120%! IT\'S OVER 9000!',
+    130: 'INFINITE LOVE 💕💕💕',
+  };
+
+  boostBtn.addEventListener('click', () => {
+    loveLevel += 10;
+
+    if (loveLevel > 130) loveLevel = 130;
+
+    meterFill.style.width = Math.min(loveLevel, 100) + '%';
+    meterLabel.textContent = loveLevelMessages[loveLevel] || loveLevel + '%';
+
+    if (loveLevel >= 100) {
+      triggerEmojiRain(['💕', '💖', '💗', '💝', '❤️']);
+    }
+
+    if (loveLevel >= 130) {
+      boostBtn.textContent = "Maximum love reached! 💥";
+      boostBtn.disabled = true;
+      boostBtn.style.opacity = '0.7';
+    }
+  });
+
+  // Scratch card
+  function initScratchCard() {
+    const canvas = document.getElementById('scratchCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Set canvas size
+    function resizeCanvas() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      drawScratchSurface();
+    }
+
+    function drawScratchSurface() {
+      // Fill with scratchable surface
+      ctx.fillStyle = '#c0c0c0';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Add some texture
+      ctx.fillStyle = '#a8a8a8';
+      for (let i = 0; i < 200; i++) {
+        ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 2, 2);
+      }
+
+      ctx.font = 'bold 14px Quicksand';
+      ctx.fillStyle = '#888';
+      ctx.textAlign = 'center';
+      ctx.fillText('Scratch here!', canvas.width/2, canvas.height/2);
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    let isScratching = false;
+
+    function scratch(x, y) {
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(x, y, 20, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    canvas.addEventListener('mousedown', () => isScratching = true);
+    canvas.addEventListener('mouseup', () => isScratching = false);
+    canvas.addEventListener('mouseleave', () => isScratching = false);
+    canvas.addEventListener('mousemove', (e) => {
+      if (!isScratching) return;
+      const rect = canvas.getBoundingClientRect();
+      scratch(e.clientX - rect.left, e.clientY - rect.top);
+    });
+
+    // Touch support
+    canvas.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      isScratching = true;
+    });
+    canvas.addEventListener('touchend', () => isScratching = false);
+    canvas.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      if (!isScratching) return;
+      const rect = canvas.getBoundingClientRect();
+      const touch = e.touches[0];
+      scratch(touch.clientX - rect.left, touch.clientY - rect.top);
+    });
+  }
+
+  // Emoji rain
+  function triggerEmojiRain(emojis) {
+    const container = document.getElementById('emojiRain');
+    for (let i = 0; i < 30; i++) {
+      setTimeout(() => {
+        const emoji = document.createElement('div');
+        emoji.className = 'rain-emoji';
+        emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        emoji.style.left = Math.random() * 100 + '%';
+        emoji.style.animationDuration = (2 + Math.random() * 2) + 's';
+        container.appendChild(emoji);
+        setTimeout(() => emoji.remove(), 4000);
+      }, i * 80);
+    }
+  }
+
+  // Party mode
+  function partyMode() {
+    triggerEmojiRain(['🎉', '🎊', '💕', '✨', '💖', '🥳', '💗', '🎈', '🐕']);
+
+    // Color flash
+    document.body.style.transition = 'filter 0.2s';
+    let flashes = 0;
+    const flashInterval = setInterval(() => {
+      document.body.style.filter = `hue-rotate(${flashes * 30}deg)`;
+      flashes++;
+      if (flashes > 12) {
+        clearInterval(flashInterval);
+        document.body.style.filter = 'none';
+      }
+    }, 150);
+  }
 </script>
 
 </body>

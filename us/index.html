@@ -308,6 +308,79 @@
       margin-top: 1rem;
     }
 
+    /* WINGSPAN */
+    .wingspan-cards {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .bird-card {
+      width: 200px;
+      background: #faf8f2;
+      border-radius: 12px;
+      border: 2px solid #d4c9a8;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+
+    .bird-card:hover {
+      transform: translateY(-6px) rotate(1deg);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+
+    .bird-card-header {
+      padding: 0.6rem 0.8rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .bird-card-art {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .bird-card-cost {
+      padding: 0.3rem 0.8rem;
+      font-size: 0.75rem;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .bird-card-power {
+      padding: 0.5rem 0.8rem;
+      font-size: 0.8rem;
+      color: #444;
+      border-top: 1px solid #e8e0cc;
+      min-height: 60px;
+    }
+
+    .bird-card-power strong {
+      color: var(--purple);
+    }
+
+    .bird-card.owl .bird-card-header { background: #5c4033; color: white; }
+    .bird-card.owl .bird-card-art { background: #f5ebe0; }
+    .bird-card.bonus .bird-card-header { background: var(--purple); color: white; }
+    .bird-card.bonus .bird-card-art { background: #ede7f6; }
+    .bird-card.us .bird-card-header { background: var(--pink); color: white; }
+    .bird-card.us .bird-card-art { background: #fff3e0; }
+
+    .rat { font-size: 0.85rem; }
+
     /* LOVE METER */
     .love-meter {
       margin: 2rem auto;
@@ -503,6 +576,41 @@
       <p>Click to flip through our memories!</p>
       <div class="photo-stack" id="photoStack"></div>
       <p class="swipe-hint">to many more!!</p>
+    </div>
+
+    <!-- WINGSPAN -->
+    <div class="card">
+      <h2 class="card-title">Wingspan Night</h2>
+      <p>our best cards</p>
+      <div class="wingspan-cards">
+        <div class="bird-card owl" onclick="this.style.transform='rotate('+Math.random()*6+'deg)'">
+          <div class="bird-card-header">
+            <span>Great Horned Owl</span>
+            <span>🦉</span>
+          </div>
+          <div class="bird-card-art">🦉</div>
+          <div class="bird-card-cost"><span class="rat">🐀🐀🐀</span> (worth it)</div>
+          <div class="bird-card-power"><strong>When activated:</strong> your girlfriend says "OWLLL" and refuses to play anything else</div>
+        </div>
+        <div class="bird-card bonus" onclick="this.style.transform='rotate('+Math.random()*6+'deg)'">
+          <div class="bird-card-header">
+            <span>Bonus Hoarder</span>
+            <span>🃏</span>
+          </div>
+          <div class="bird-card-art">🐦</div>
+          <div class="bird-card-cost">draw all the bonus cards</div>
+          <div class="bird-card-power"><strong>When activated:</strong> gain 47 bonus cards. Win by having more bonus cards than actual birds</div>
+        </div>
+        <div class="bird-card us" onclick="this.style.transform='rotate('+Math.random()*6+'deg)'">
+          <div class="bird-card-header">
+            <span>Owen & Alyssa</span>
+            <span>❤️</span>
+          </div>
+          <div class="bird-card-art">🐦‍❤️‍🐦</div>
+          <div class="bird-card-cost">cost: one sushi date</div>
+          <div class="bird-card-power"><strong>When activated:</strong> gain unlimited wingspan rematches and one very happy valentine's day</div>
+        </div>
+      </div>
     </div>
 
     <!-- FINAL -->

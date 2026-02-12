@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owen & Alyssa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --pink: #ff6b9d;
+      --pink-light: #ffa4c4;
+      --pink-dark: #e84a7f;
+      --purple: #9b59b6;
+      --yellow: #ffd93d;
+      --mint: #6dd5c3;
+      --coral: #ff7675;
+      --white: #ffffff;
+      --dark: #2d3436;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      color: var(--dark);
+      line-height: 1.6;
+      background: linear-gradient(135deg, #fff5f8 0%, #f0e6ff 50%, #e6f7ff 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Floating Hearts Background */
+    .hearts-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 1.5rem;
+      animation: float 15s infinite ease-in-out;
+      opacity: 0.3;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.3; }
+      90% { opacity: 0.3; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Content Container */
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .hero-title {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(3rem, 10vw, 6rem);
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      animation: bounce-in 1s ease-out;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: var(--pink-dark);
+      font-weight: 600;
+      margin-bottom: 2rem;
+      animation: fade-in 1s ease-out 0.3s both;
+    }
+
+    .hero-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      box-shadow: 0 10px 40px rgba(255, 107, 157, 0.2);
+      font-weight: 600;
+      color: var(--pink-dark);
+      animation: fade-in 1s ease-out 0.5s both;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      animation: bounce 2s infinite;
+      font-size: 2rem;
+    }
+
+    @keyframes bounce-in {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Timeline Section */
+    .timeline-section {
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(2rem, 5vw, 3rem);
+      text-align: center;
+      color: var(--pink-dark);
+      margin-bottom: 3rem;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--pink), var(--purple), var(--mint));
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      transform: translateX(0);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .timeline-item:hover {
+      transform: translateX(10px);
+      box-shadow: 0 15px 50px rgba(255, 107, 157, 0.15);
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -38px;
+      top: 2rem;
+      width: 20px;
+      height: 20px;
+      background: var(--pink);
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 0 0 4px var(--pink-light);
+    }
+
+    .timeline-item:nth-child(2)::before { background: var(--purple); box-shadow: 0 0 0 4px #d4a5e8; }
+    .timeline-item:nth-child(3)::before { background: var(--mint); box-shadow: 0 0 0 4px #a8e8db; }
+    .timeline-item:nth-child(4)::before { background: var(--coral); box-shadow: 0 0 0 4px #ffb3b3; }
+    .timeline-item:nth-child(5)::before { background: var(--yellow); box-shadow: 0 0 0 4px #ffe588; }
+
+    .timeline-emoji {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-date {
+      font-size: 0.85rem;
+      color: var(--pink);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .timeline-desc {
+      color: #636e72;
+      font-size: 0.95rem;
+    }
+
+    /* Photo Gallery */
+    .gallery-section {
+      padding: 4rem 2rem;
+      background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    }
+
+    .gallery-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.03) rotate(1deg);
+      box-shadow: 0 20px 60px rgba(255, 107, 157, 0.25);
+    }
+
+    .gallery-item:nth-child(even):hover {
+      transform: scale(1.03) rotate(-1deg);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-item .caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem 1rem 1rem;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+      color: white;
+      font-weight: 600;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover .caption {
+      transform: translateY(0);
+    }
+
+    /* Love Note */
+    .love-note {
+      max-width: 700px;
+      margin: 4rem auto;
+      padding: 3rem;
+      background: white;
+      border-radius: 30px;
+      box-shadow: 0 20px 60px rgba(255, 107, 157, 0.15);
+      text-align: center;
+      position: relative;
+    }
+
+    .love-note::before {
+      content: '"';
+      font-family: 'Pacifico', cursive;
+      font-size: 8rem;
+      color: var(--pink-light);
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      line-height: 1;
+      opacity: 0.5;
+    }
+
+    .love-note p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: var(--dark);
+      position: relative;
+      z-index: 1;
+    }
+
+    .love-note .signature {
+      margin-top: 2rem;
+      font-family: 'Pacifico', cursive;
+      font-size: 1.5rem;
+      color: var(--pink-dark);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: var(--pink-dark);
+      font-weight: 600;
+    }
+
+    footer .heart-icon {
+      display: inline-block;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    /* Confetti on Load */
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--pink);
+      animation: confetti-fall 4s ease-out forwards;
+    }
+
+    @keyframes confetti-fall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .timeline { padding-left: 25px; }
+      .timeline-item::before { left: -32px; width: 16px; height: 16px; }
+      .love-note { margin: 2rem 1rem; padding: 2rem 1.5rem; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hearts-bg" id="hearts"></div>
+<div class="confetti" id="confetti"></div>
+
+<div class="content">
+  <!-- Hero -->
+  <section class="hero">
+    <h1 class="hero-title">Owen & Alyssa</h1>
+    <p class="hero-subtitle">Our story so far...</p>
+    <div class="hero-date">
+      <span>Together since July 9, 2025</span>
+    </div>
+    <div class="scroll-hint">👇</div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="timeline-section">
+    <h2 class="section-title">Our Journey</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-emoji">🍣</div>
+        <div class="timeline-date">First Date</div>
+        <div class="timeline-title">Sushi at Umai, Chicago</div>
+        <div class="timeline-desc">Where it all began! Our first date over delicious sushi. Little did we know this would be the start of something amazing.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-emoji">💕</div>
+        <div class="timeline-date">July 9, 2025</div>
+        <div class="timeline-title">We Made It Official!</div>
+        <div class="timeline-desc">The day we decided to make it real. Best decision ever.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-emoji">🌉</div>
+        <div class="timeline-date">San Francisco Trip</div>
+        <div class="timeline-title">Adventures in the Bay</div>
+        <div class="timeline-desc">Fisherman's Wharf, Alcatraz, Ghirardelli chocolate, and Boudin sourdough. So many memories exploring the city together!</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-emoji">🤠</div>
+        <div class="timeline-date">Austin, Texas</div>
+        <div class="timeline-title">Texas Adventures</div>
+        <div class="timeline-desc">Taking on Austin together - more adventures, more memories, more us.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-emoji">❤️</div>
+        <div class="timeline-date">February 14, 2026</div>
+        <div class="timeline-title">Happy Valentine's Day!</div>
+        <div class="timeline-desc">Here's to many more adventures together. I love you, Alyssa!</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Gallery -->
+  <section class="gallery-section">
+    <h2 class="section-title">Our Memories</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="photos/IMG_4152.jpg" alt="Us together">
+        <div class="caption">Date night vibes ✨</div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/IMG_4220.jpg" alt="Restaurant date">
+        <div class="caption">Good food, better company 🍽️</div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/IMG_4207.jpg" alt="Chicago">
+        <div class="caption">Chicago days 🌸</div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/IMG_4280.jpg" alt="San Francisco">
+        <div class="caption">SF Views 🌉</div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/IMG_4328.jpg" alt="Alcatraz Ferry">
+        <div class="caption">Alcatraz adventure 🚢</div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/IMG_4262.jpg" alt="Pier 39">
+        <div class="caption">Pier 39 🦭</div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/IMG_4352.jpg" alt="Boudin Bakery">
+        <div class="caption">Sourdough life 🥖</div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/IMG_4356.jpg" alt="Ghirardelli">
+        <div class="caption">Ghirardelli Square 🍫</div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/IMG_4248.jpg" alt="Travel">
+        <div class="caption">Adventure awaits ✈️</div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/IMG_4222.jpg" alt="Being silly">
+        <div class="caption">Never a dull moment 😂</div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/IMG_4178.jpg" alt="Cute moment">
+        <div class="caption">My favorite person 💗</div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/IMG_4272.jpg" alt="Ferris wheel">
+        <div class="caption">On top of the world 🎡</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Love Note -->
+  <section style="padding: 2rem;">
+    <div class="love-note">
+      <p>
+        Alyssa, every moment with you is an adventure. From our first sushi date to exploring new cities together, you make everything better. Your smile lights up my world, and your laugh is my favorite sound. Here's to us, to more trips, more inside jokes, and more love.
+        <br><br>
+        Happy Valentine's Day! 💕
+      </p>
+      <div class="signature">- Owen</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    Made with <span class="heart-icon">❤️</span> for Alyssa
+    <br>
+    <small>Happy Valentine's Day 2026</small>
+  </footer>
+</div>
+
+<script>
+  // Create floating hearts
+  const heartsContainer = document.getElementById('hearts');
+  const heartEmojis = ['💕', '💗', '💖', '💝', '❤️', '💓', '💞'];
+
+  for (let i = 0; i < 20; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.animationDelay = Math.random() * 15 + 's';
+    heart.style.animationDuration = (15 + Math.random() * 10) + 's';
+    heartsContainer.appendChild(heart);
+  }
+
+  // Confetti burst on load
+  const confettiContainer = document.getElementById('confetti');
+  const colors = ['#ff6b9d', '#9b59b6', '#ffd93d', '#6dd5c3', '#ff7675'];
+
+  for (let i = 0; i < 50; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + '%';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDelay = Math.random() * 0.5 + 's';
+    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+    confettiContainer.appendChild(piece);
+  }
+
+  // Remove confetti after animation
+  setTimeout(() => {
+    confettiContainer.innerHTML = '';
+  }, 5000);
+</script>
+
+</body>
+</html>

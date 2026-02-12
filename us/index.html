@@ -516,16 +516,6 @@
       <button class="boost-btn" id="boostBtn">Add More Love 💕</button>
     </div>
 
-    <!-- SCRATCH CARD -->
-    <div class="card secret-box">
-      <h2 style="font-family: 'Pacifico', cursive; font-size: 1.5rem;">Secret Message</h2>
-      <p>Scratch to reveal...</p>
-      <div class="scratch-area">
-        <div class="hidden-message">I love you more than Boudin sourdough 🥖💕</div>
-        <canvas class="scratch-canvas" id="scratchCanvas"></canvas>
-      </div>
-    </div>
-
     <!-- FINAL -->
     <div class="card final-card">
       <h2 class="card-title">Happy Valentine's Day!</h2>
@@ -585,7 +575,6 @@
     document.getElementById('experience').classList.add('active');
     triggerEmojiRain(['💕', '💖', '🎉', '✨']);
     initPhotoStack();
-    initScratchCard();
     setTimeout(() => {
       document.getElementById('meterFill').style.width = '69%';
       document.getElementById('meterLabel').textContent = '69% (nice)';
@@ -727,72 +716,6 @@
       boostBtn.style.opacity = '0.7';
     }
   });
-
-  // Scratch card
-  function initScratchCard() {
-    const canvas = document.getElementById('scratchCanvas');
-    const ctx = canvas.getContext('2d');
-
-    // Set canvas size
-    function resizeCanvas() {
-      const rect = canvas.parentElement.getBoundingClientRect();
-      canvas.width = rect.width;
-      canvas.height = rect.height;
-      drawScratchSurface();
-    }
-
-    function drawScratchSurface() {
-      // Fill with scratchable surface
-      ctx.fillStyle = '#c0c0c0';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Add some texture
-      ctx.fillStyle = '#a8a8a8';
-      for (let i = 0; i < 200; i++) {
-        ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 2, 2);
-      }
-
-      ctx.font = 'bold 14px Quicksand';
-      ctx.fillStyle = '#888';
-      ctx.textAlign = 'center';
-      ctx.fillText('Scratch here!', canvas.width/2, canvas.height/2);
-    }
-
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    let isScratching = false;
-
-    function scratch(x, y) {
-      ctx.globalCompositeOperation = 'destination-out';
-      ctx.beginPath();
-      ctx.arc(x, y, 20, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    canvas.addEventListener('mousedown', () => isScratching = true);
-    canvas.addEventListener('mouseup', () => isScratching = false);
-    canvas.addEventListener('mouseleave', () => isScratching = false);
-    canvas.addEventListener('mousemove', (e) => {
-      if (!isScratching) return;
-      const rect = canvas.getBoundingClientRect();
-      scratch(e.clientX - rect.left, e.clientY - rect.top);
-    });
-
-    // Touch support
-    canvas.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      isScratching = true;
-    });
-    canvas.addEventListener('touchend', () => isScratching = false);
-    canvas.addEventListener('touchmove', (e) => {
-      e.preventDefault();
-      if (!isScratching) return;
-      const rect = canvas.getBoundingClientRect();
-      const touch = e.touches[0];
-      scratch(touch.clientX - rect.left, touch.clientY - rect.top);
-    });
-  }
 
   // Emoji rain
   function triggerEmojiRain(emojis) {

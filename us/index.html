@@ -503,19 +503,6 @@
       <p class="swipe-hint">tap the top photo!</p>
     </div>
 
-    <!-- LOVE METER -->
-    <div class="card">
-      <h2 class="card-title">Love-O-Meter</h2>
-      <p>Current love levels:</p>
-      <div class="love-meter">
-        <div class="meter-bar">
-          <div class="meter-fill" id="meterFill"></div>
-        </div>
-        <div class="meter-label" id="meterLabel">0%</div>
-      </div>
-      <button class="boost-btn" id="boostBtn">Add More Love 💕</button>
-    </div>
-
     <!-- FINAL -->
     <div class="card final-card">
       <h2 class="card-title">Happy Valentine's Day!</h2>
@@ -575,10 +562,6 @@
     document.getElementById('experience').classList.add('active');
     triggerEmojiRain(['🎉', '✨', '⭐', '🔥']);
     initPhotoStack();
-    setTimeout(() => {
-      document.getElementById('meterFill').style.width = '69%';
-      document.getElementById('meterLabel').textContent = '69% (nice)';
-    }, 800);
   }
 
   // Thanks button spam
@@ -680,42 +663,6 @@
 
     renderStack();
   }
-
-  // Love meter
-  let loveLevel = 69;
-  const boostBtn = document.getElementById('boostBtn');
-  const meterFill = document.getElementById('meterFill');
-  const meterLabel = document.getElementById('meterLabel');
-
-  const loveLevelMessages = {
-    69: '69% (nice)',
-    79: '79%',
-    89: '89%',
-    99: '99%',
-    100: '100%!! 💕',
-    110: '110%! 💕💕',
-    120: '120%! IT\'S OVER 9000!',
-    130: 'INFINITE LOVE 💕💕💕',
-  };
-
-  boostBtn.addEventListener('click', () => {
-    loveLevel += 10;
-
-    if (loveLevel > 130) loveLevel = 130;
-
-    meterFill.style.width = Math.min(loveLevel, 100) + '%';
-    meterLabel.textContent = loveLevelMessages[loveLevel] || loveLevel + '%';
-
-    if (loveLevel >= 100) {
-      triggerEmojiRain(['❤️', '🔥', '✨', '⭐', '🎉']);
-    }
-
-    if (loveLevel >= 130) {
-      boostBtn.textContent = "Maximum love reached! 💥";
-      boostBtn.disabled = true;
-      boostBtn.style.opacity = '0.7';
-    }
-  });
 
   // Emoji rain
   function triggerEmojiRain(emojis) {

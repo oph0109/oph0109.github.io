@@ -381,6 +381,220 @@
 
     .rat { font-size: 0.85rem; }
 
+    .play-btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      background: linear-gradient(135deg, #5c4033, #8d6e63);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .play-btn:hover { transform: scale(1.05); }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: #f5ebe0;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 700px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 1.5rem;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 0.8rem; right: 1rem;
+      background: none; border: none;
+      font-size: 1.5rem; cursor: pointer;
+      color: #666;
+    }
+
+    .modal h2 {
+      font-family: 'Pacifico', cursive;
+      color: #5c4033;
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+    }
+
+    /* GAME */
+    .game-status {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .food-supply {
+      display: flex;
+      gap: 0.3rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .food-token {
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: transform 0.15s;
+      user-select: none;
+    }
+    .food-token:hover { transform: scale(1.2); }
+    .food-token.selected { transform: scale(1.3); filter: brightness(1.3); }
+
+    .game-label {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 0.3rem;
+    }
+
+    .bird-tray {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+
+    .tray-card {
+      width: 170px;
+      background: #faf8f2;
+      border-radius: 10px;
+      border: 2px solid #d4c9a8;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      text-align: left;
+      font-size: 0.8rem;
+    }
+    .tray-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+    .tray-card.highlight { border-color: #4caf50; box-shadow: 0 0 12px rgba(76,175,80,0.4); }
+    .tray-card.disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .tray-card .tc-header {
+      padding: 0.4rem 0.6rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      background: #8d6e63;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .tray-card .tc-art {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      background: #faf8f2;
+    }
+
+    .tray-card .tc-cost {
+      padding: 0.3rem 0.6rem;
+      font-size: 0.75rem;
+      color: #666;
+    }
+
+    .tray-card .tc-pts {
+      background: #ffd93d;
+      color: #333;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+
+    .tray-card .tc-power {
+      padding: 0.3rem 0.6rem;
+      font-size: 0.72rem;
+      color: #555;
+      border-top: 1px solid #e8e0cc;
+    }
+
+    .my-birds {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      min-height: 40px;
+      padding: 0.5rem;
+      background: rgba(255,255,255,0.5);
+      border-radius: 10px;
+      margin: 0.5rem 0;
+    }
+
+    .my-bird-mini {
+      font-size: 1.5rem;
+      transition: transform 0.2s;
+    }
+    .my-bird-mini:hover { transform: scale(1.2); }
+
+    .game-msg {
+      text-align: center;
+      font-weight: 600;
+      color: #5c4033;
+      margin: 0.5rem 0;
+      min-height: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .game-over-screen {
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .game-over-screen h3 {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.8rem;
+      color: #5c4033;
+      margin-bottom: 0.5rem;
+    }
+
+    .final-score {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--purple);
+      margin: 0.5rem 0;
+    }
+
+    .game-action-btn {
+      display: inline-block;
+      margin-top: 0.8rem;
+      background: #8d6e63;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      font-size: 0.9rem;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .game-action-btn:hover { transform: scale(1.05); }
+
     /* LOVE METER */
     .love-meter {
       margin: 2rem auto;
@@ -611,6 +825,15 @@
           <div class="bird-card-power"><strong>When activated:</strong> gain unlimited wingspan rematches and one very happy valentine's day</div>
         </div>
       </div>
+      <button class="play-btn" onclick="openWingspan()">🪶 Play Wingspan</button>
+    </div>
+
+    <!-- WINGSPAN MODAL -->
+    <div class="modal-overlay" id="wingspanModal">
+      <div class="modal">
+        <button class="modal-close" onclick="closeWingspan()">✕</button>
+        <div id="gameContainer"></div>
+      </div>
     </div>
 
     <!-- FINAL -->
@@ -786,6 +1009,229 @@
         setTimeout(() => emoji.remove(), 4000);
       }, i * 80);
     }
+  }
+
+  // Wingspan Game
+  const ALL_BIRDS = [
+    { name: 'Great Horned Owl', emoji: '🦉', cost: ['🐀','🐀','🐀'], pts: 5, power: 'When played: steal 2 food from the birdfeeder', effect: 'steal' },
+    { name: 'Barn Owl', emoji: '🦉', cost: ['🐀','🐀'], pts: 3, power: 'When played: draw 1 bonus card', effect: 'bonus' },
+    { name: 'Bald Eagle', emoji: '🦅', cost: ['🐟','🐟','🐀'], pts: 6, power: 'Majestic. That\'s it.', effect: null },
+    { name: 'Blue Jay', emoji: '🐦', cost: ['🌾'], pts: 2, power: 'When played: gain 1 random food', effect: 'food' },
+    { name: 'Cardinal', emoji: '🐤', cost: ['🌾','🍒'], pts: 3, power: 'When played: draw 1 bonus card', effect: 'bonus' },
+    { name: 'Hummingbird', emoji: '🐦', cost: ['🍒'], pts: 1, power: 'When played: gain 2 random food', effect: 'food2' },
+    { name: 'Robin', emoji: '🐦', cost: ['🪱'], pts: 2, power: 'When played: gain 1 random food', effect: 'food' },
+    { name: 'Pelican', emoji: '🐦', cost: ['🐟','🐟'], pts: 4, power: 'Big boy.', effect: null },
+    { name: 'Crow', emoji: '🐦‍⬛', cost: ['🌾','🪱'], pts: 3, power: 'When played: draw 2 bonus cards', effect: 'bonus2' },
+    { name: 'Hawk', emoji: '🦅', cost: ['🐀','🐟'], pts: 4, power: 'When played: gain 1 random food', effect: 'food' },
+    { name: 'Woodpecker', emoji: '🐦', cost: ['🪱','🪱'], pts: 3, power: 'When played: draw 1 bonus card', effect: 'bonus' },
+    { name: 'Flamingo', emoji: '🦩', cost: ['🐟','🍒'], pts: 3, power: 'Fabulous. +1 bonus card', effect: 'bonus' },
+    { name: 'Penguin', emoji: '🐧', cost: ['🐟','🐟','🐟'], pts: 5, power: 'Wrong hemisphere but ok', effect: null },
+    { name: 'Sparrow', emoji: '🐦', cost: ['🌾'], pts: 1, power: 'When played: gain 1 random food', effect: 'food' },
+    { name: 'Toucan', emoji: '🦜', cost: ['🍒','🍒'], pts: 3, power: 'When played: gain 2 random food', effect: 'food2' },
+    { name: 'Duck', emoji: '🦆', cost: ['🌾','🐟'], pts: 3, power: 'Quack. +1 bonus card', effect: 'bonus' },
+    { name: 'Goose', emoji: '🪿', cost: ['🌾','🌾'], pts: 2, power: 'When played: HONK. Gain 3 food', effect: 'food3' },
+    { name: 'Parrot', emoji: '🦜', cost: ['🍒','🪱'], pts: 3, power: 'Repeats everything. +1 bonus', effect: 'bonus' },
+  ];
+
+  const FOOD_TYPES = ['🐀','🌾','🐟','🍒','🪱'];
+  const BONUS_NAMES = ['Photographer','Cartographer','Backyard Birder','Viticulturist','Rodentologist','Fish Expert','Nest Builder','Platform Builder','Omnivore','Forager'];
+
+  let game = {};
+
+  function openWingspan() {
+    document.getElementById('wingspanModal').classList.add('open');
+    startGame();
+  }
+
+  function closeWingspan() {
+    document.getElementById('wingspanModal').classList.remove('open');
+  }
+
+  function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function randomFood() {
+    return FOOD_TYPES[Math.floor(Math.random() * FOOD_TYPES.length)];
+  }
+
+  function startGame() {
+    const deck = shuffle(ALL_BIRDS);
+    game = {
+      deck,
+      tray: [deck.pop(), deck.pop(), deck.pop()],
+      food: Array.from({length: 5}, () => randomFood()),
+      birds: [],
+      bonusCards: 0,
+      turns: 0,
+      maxTurns: 8,
+      msg: 'Pick a bird to play! Match the food cost.',
+      over: false
+    };
+    renderGame();
+  }
+
+  function canAfford(bird) {
+    const available = [...game.food];
+    for (const f of bird.cost) {
+      const idx = available.indexOf(f);
+      if (idx === -1) return false;
+      available.splice(idx, 1);
+    }
+    return true;
+  }
+
+  function playBird(index) {
+    if (game.over) return;
+    const bird = game.tray[index];
+    if (!canAfford(bird)) {
+      game.msg = "You don't have the right food for that bird!";
+      renderGame();
+      return;
+    }
+
+    // Spend food
+    for (const f of bird.cost) {
+      const idx = game.food.indexOf(f);
+      game.food.splice(idx, 1);
+    }
+
+    // Add bird
+    game.birds.push(bird);
+    game.turns++;
+
+    // Apply effect
+    let effectMsg = '';
+    if (bird.effect === 'steal') {
+      const stolen = [randomFood(), randomFood()];
+      game.food.push(...stolen);
+      effectMsg = ` Stole ${stolen.join('')} from the birdfeeder!`;
+    } else if (bird.effect === 'food') {
+      const f = randomFood();
+      game.food.push(f);
+      effectMsg = ` Gained ${f}!`;
+    } else if (bird.effect === 'food2') {
+      const f = [randomFood(), randomFood()];
+      game.food.push(...f);
+      effectMsg = ` Gained ${f.join('')}!`;
+    } else if (bird.effect === 'food3') {
+      const f = [randomFood(), randomFood(), randomFood()];
+      game.food.push(...f);
+      effectMsg = ` HONK! Gained ${f.join('')}!`;
+    } else if (bird.effect === 'bonus') {
+      game.bonusCards++;
+      effectMsg = ` Drew a bonus card! (${BONUS_NAMES[Math.floor(Math.random()*BONUS_NAMES.length)]})`;
+    } else if (bird.effect === 'bonus2') {
+      game.bonusCards += 2;
+      effectMsg = ` Drew 2 bonus cards!`;
+    }
+
+    game.msg = `Played ${bird.emoji} ${bird.name}!${effectMsg}`;
+
+    // Refill tray
+    game.tray.splice(index, 1);
+    if (game.deck.length > 0) game.tray.push(game.deck.pop());
+    // Always keep 3 if possible
+    while (game.tray.length < 3 && game.deck.length > 0) game.tray.push(game.deck.pop());
+
+    // Check game over
+    if (game.turns >= game.maxTurns || game.tray.length === 0 || !game.tray.some(b => canAfford(b))) {
+      if (game.tray.length > 0 && game.tray.some(b => canAfford(b)) && game.turns < game.maxTurns) {
+        // Can still play
+      } else {
+        game.over = true;
+      }
+    }
+
+    renderGame();
+  }
+
+  function skipTurn() {
+    if (game.over) return;
+    // Gain food instead of playing a bird
+    const f = [randomFood(), randomFood()];
+    game.food.push(...f);
+    game.turns++;
+    game.msg = `Foraged for food! Gained ${f.join('')}`;
+
+    if (game.turns >= game.maxTurns) game.over = true;
+    renderGame();
+  }
+
+  function getScore() {
+    const birdPts = game.birds.reduce((s, b) => s + b.pts, 0);
+    const bonusPts = game.bonusCards * 3;
+    return { birdPts, bonusPts, total: birdPts + bonusPts };
+  }
+
+  function renderGame() {
+    const c = document.getElementById('gameContainer');
+
+    if (game.over) {
+      const score = getScore();
+      let remark = 'Not bad!';
+      if (score.total >= 40) remark = 'Wingspan CHAMPION! Alyssa would be proud';
+      else if (score.total >= 30) remark = 'Amazing birder energy!';
+      else if (score.total >= 20) remark = 'Solid game!';
+      else if (score.total >= 10) remark = 'The birds appreciate your effort';
+
+      c.innerHTML = `
+        <div class="game-over-screen">
+          <h3>Game Over!</h3>
+          <div>Your birds: ${game.birds.map(b => b.emoji).join(' ')}</div>
+          <div class="final-score">${score.total} pts</div>
+          <div style="font-size:0.9rem;color:#666;">
+            Birds: ${score.birdPts} pts | Bonus cards (${game.bonusCards}): ${score.bonusPts} pts
+          </div>
+          <div style="margin-top:0.8rem;font-weight:600;color:#5c4033;">${remark}</div>
+          <button class="game-action-btn" onclick="startGame()">Play Again</button>
+        </div>
+      `;
+      return;
+    }
+
+    let foodHTML = game.food.map(f => `<span class="food-token">${f}</span>`).join('');
+
+    let trayHTML = game.tray.map((bird, i) => {
+      const affordable = canAfford(bird);
+      return `
+        <div class="tray-card ${affordable ? 'highlight' : 'disabled'}" onclick="${affordable ? `playBird(${i})` : ''}">
+          <div class="tc-header">
+            <span>${bird.name}</span>
+            <span class="tc-pts">${bird.pts}pt</span>
+          </div>
+          <div class="tc-art">${bird.emoji}</div>
+          <div class="tc-cost">Cost: ${bird.cost.join(' ')}</div>
+          <div class="tc-power">${bird.power}</div>
+        </div>
+      `;
+    }).join('');
+
+    let myBirdsHTML = game.birds.length
+      ? game.birds.map(b => `<span class="my-bird-mini" title="${b.name} (${b.pts}pt)">${b.emoji}</span>`).join('')
+      : '<span style="color:#999;font-size:0.8rem;">No birds yet...</span>';
+
+    c.innerHTML = `
+      <h2>🪶 Wingspan</h2>
+      <div class="game-status">
+        <div>Turn ${game.turns + 1} / ${game.maxTurns}</div>
+        <div>Score: ${getScore().total} pts</div>
+      </div>
+      <div class="game-label">Your Food:</div>
+      <div class="food-supply">${foodHTML}</div>
+      <div class="game-label" style="margin-top:0.8rem;">Bird Tray — pick one to play:</div>
+      <div class="bird-tray">${trayHTML}</div>
+      <div class="game-msg">${game.msg}</div>
+      <button class="game-action-btn" onclick="skipTurn()">🌾 Forage for Food Instead</button>
+      <div class="game-label" style="margin-top:1rem;">Your Birds:</div>
+      <div class="my-birds">${myBirdsHTML}</div>
+      <div style="font-size:0.8rem;color:#999;margin-top:0.3rem;">Bonus cards: ${game.bonusCards} (${game.bonusCards * 3} pts)</div>
+    `;
   }
 
   // Party mode

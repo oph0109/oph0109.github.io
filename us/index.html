@@ -589,19 +589,18 @@
     }
 
     // Update button and counter
-    if (thanksCount >= 100) {
+    thanksCounter.textContent = `${thanksCount} thanks`;
+
+    if (thanksCount >= 30) {
       thanksBtn.textContent = 'THANKS THANKS THANKS THANKS THANKS!!!';
       thanksBtn.style.background = 'linear-gradient(135deg, var(--pink), var(--purple))';
       thanksBtn.style.color = 'white';
-      thanksCounter.textContent = `${thanksCount} thanks! you're committed 💕`;
-    } else if (thanksCount >= 50) {
+    } else if (thanksCount >= 15) {
       thanksBtn.textContent = 'THANKS THANKS THANKS THANKS!!!';
-      thanksCounter.textContent = `${thanksCount} thanks and counting...`;
-    } else if (thanksCount >= 20) {
+    } else if (thanksCount >= 7) {
       thanksBtn.textContent = 'thanks thanks thanks thanks thanks';
-      thanksCounter.textContent = `${thanksCount} thanks! keep going!`;
-    } else if (thanksCount >= 5) {
-      thanksCounter.textContent = `${thanksCount} thanks so far...`;
+    } else if (thanksCount >= 3) {
+      thanksBtn.textContent = 'thanks thanks thanks thanks';
     }
   });
 
